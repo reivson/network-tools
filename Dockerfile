@@ -3,6 +3,9 @@ FROM nicolaka/netshoot
 # Install Python and venv
 RUN apk add --no-cache python3 py3-pip python3-dev
 
+# Install dev dependencies and semantic-release
+RUN pip3 install --no-cache-dir python-semantic-release
+
 # Copy requirements file
 COPY app/requirements.txt /app/
 

@@ -1,0 +1,23 @@
+[
+tool.semantic_release
+]
+version_variable = "app/__init__.py:__version__"
+branch = "main"
+upload_to_pypi = false
+build_command = "python setup.py sdist bdist_wheel"
+
+[
+tool.semantic_release.commit_parser_options
+]
+allowed_tags = [
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "style",
+    "refactor",
+    "test",
+]
