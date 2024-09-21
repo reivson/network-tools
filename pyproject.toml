@@ -1,14 +1,10 @@
-[
-tool.semantic_release
-]
+[tool.semantic_release]
 version_variable = "app/__init__.py:__version__"
 branch = "main"
 upload_to_pypi = false
 build_command = "python setup.py sdist bdist_wheel"
 
-[
-tool.semantic_release.commit_parser_options
-]
+[tool.semantic_release.commit_parser_options]
 allowed_tags = [
     "build",
     "chore",
@@ -19,5 +15,12 @@ allowed_tags = [
     "perf",
     "style",
     "refactor",
-    "test",
+    "test"
 ]
+
+[tool.semantic_release.remote]
+type = "github"
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
