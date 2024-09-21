@@ -3,6 +3,8 @@ version_variable = "app/__init__.py:__version__"
 branch = "main"
 upload_to_pypi = false
 build_command = "python setup.py sdist bdist_wheel"
+version_toml = ["pyproject.toml:tool.semantic_release.version"]
+version_pattern = "{major}.{minor}.{patch}"
 
 [tool.semantic_release.commit_parser_options]
 allowed_tags = [
@@ -24,3 +26,6 @@ type = "github"
 [tool.semantic_release.branches.main]
 match = "main"
 prerelease = false
+
+[tool.semantic_release.version]
+format = "v{version}"
