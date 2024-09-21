@@ -37,6 +37,26 @@ jobs:
         echo "Validating TOML format:"
         python -c "import toml; toml.load('pyproject.toml')"
 
+
+    - name: Check for existing tags
+      id: check-tags
+      run: |
+        if [ -z "$(git tag -l)" ]; then
+          echo "No tags found. Will create initial tag."
+          echo "create_initial_tag=true" >> $GITHUB_OUTPUT
+        else
+          echo "Existing tags found."
+          echo "create_initial_tag=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Create initial tag if needed
+      if: steps.check-tags.outputs.create_initial_tag == 'true'
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git tag -a v0.1.0 -m "Initial release"
+        git push origin v0.1.0
+
     - name: Semantic Release
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
